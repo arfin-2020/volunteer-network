@@ -45,7 +45,7 @@ const AddEvent = () => {
   return (
     <>
       <NavBar />
-      <div className="background">
+      <div className="background mb-5">
         <Link to="/volunteerList">
           <p className="backIcon">
             {" "}

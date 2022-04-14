@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Cards = ({ img, _id, title }) => {
     const navigate = useNavigate();
     const handleRegister = (id) =>{
-        navigate(`register`,{state: {title,id, img}})
+        navigate(`register/${id}`)
     }
   return (
     <div className="transition transform duration-700 hover:scale-105 p-4 rounded-lg relative">

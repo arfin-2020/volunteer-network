@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
-import Cards from "../../Cards";
-import Skeleton from "../../Skeleton";
+import Cards from '../../Cards';
+import Skeleton from '../../Skeleton';
+import UseFetch from "../../UseFetch";
 import classes from './Home.module.css';
 const Card = () => {
-  const [events, setEvents] = useState([]);
+  // const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [displayEvents, setDisplayEvents] = useState([]);
+  // const [displayEvents, setDisplayEvents] = useState([]);
+  const [events,setEvents, displayEvents, setDisplayEvents] = UseFetch([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/events")
-      .then(res => res.json())
-      .then(data => {
-        setEvents(data);
-        setDisplayEvents(data);
-      });
-  }, []);
+  // console.log(setEvents)
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/events")
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setEvents(data);
+  //       setDisplayEvents(data);
+  //     });
+  // }, []);
 
   useEffect(() => {
     setLoading(true);

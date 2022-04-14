@@ -1,20 +1,22 @@
 import React from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import '../../App.css';
 import logo from '../../assets/images/logo.png';
+import { useAuth } from "../Context/AuthProvider";
+import UseFetch from "../UseFetch";
 import "./Register.css";
 
 const Register = () => {
-  const location = useLocation();
-//   console.log(location.state.title);
-  const title  = location.state.title;
-  const imgURL  = location.state.img;
-//   console.log('Image URL -------',imgURL)
+  const {id} = useParams();
+  const [events] = UseFetch([]);
+  // console.log(events)
+  // console.log(id)
+  
     const navigate =  useNavigate()
-
+    const {currentUser} = useAuth();
   const {
     register,
     handleSubmit,
@@ -62,12 +64,15 @@ const Register = () => {
             <Card.Title>
               <h1>Register as a Volunteer!</h1>
             </Card.Title>
-            <Form onSubmit={handleSubmit(onSubmit)} className="text-center">
+           {
+             events.filter(event=>event._id === id)
+             .map(event=>
+              <Form onSubmit={handleSubmit(onSubmit)} className="text-center">
               <Form.Group className="mb-2">
                 <Form.Control
                   
                   type="text"
-                //   defaultValue={userData.name}
+                  defaultValue={currentUser.name}
                 placeholder="name"
                   className="form__focus"
                   {...register('name',{
@@ -90,7 +95,7 @@ const Register = () => {
                 <Form.Control
                   name="email"
                   type="text"
-                //   defaultValue={userData.email}
+                  defaultValue={currentUser.email}
                   placeholder="Email"
                 //   readOnly
                   className="form__focus"
@@ -148,7 +153,7 @@ const Register = () => {
                   name="title"
                   type="text"
                   readOnly
-                  defaultValue={title}
+                  defaultValue={event.title}
                   className=" form__focusDefault"
                   {...register('title',{
                     required: "Description is required",
@@ -161,10 +166,10 @@ const Register = () => {
               </Form.Group>
               <Form.Group className="mb-2">
                 <Form.Control
-                  name="title"
+                  name="imgURL"
                   type="text"
                   readOnly
-                  defaultValue={imgURL}
+                  defaultValue={event.img}
                   className=" form__focusDefault"
                   {...register('imgUrl',{
                     required: "Description is required",
@@ -201,6 +206,8 @@ const Register = () => {
                 </Link>
               )} */}
             </Form>
+             )
+           }
           </Card.Body>
         </Card>
       </Col>
