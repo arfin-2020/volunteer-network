@@ -62,7 +62,7 @@ const NavBar = () => {
               >
                 Events
               </Link>
-              {!currentUser?.name ? (
+              {!currentUser?.name  ? (
                 <Link
                   to="/login"
                   className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-amber-600 hover:bg-amber-700 "
@@ -78,13 +78,17 @@ const NavBar = () => {
                 </button>
               )}
 
-              {currentUser?.name ? (
+              {currentUser?.name  ? (
+                <div>
                 <span
                   className="poppins text-primary text-1xl"
                   style={{ color: "black", marginLeft: "5px" }}
                 >
-                  Hello, {currentUser?.name}
+                  Hello, {currentUser?.name}  
                 </span>
+                <span className="poppins text-primary text-1xl"
+                  style={{ color: "black", marginLeft: "5px" }}> {currentUser?.email}</span>
+                </div>
               ) : (
                 <Link
                   to="/signUp"

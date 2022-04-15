@@ -6,6 +6,7 @@ import AuthProvider from "./components/Context/AuthProvider";
 import Events from "./components/Events/Events";
 import HomePage from './components/HomePage/HomePage';
 import Login from "./components/Login/Login";
+import PageNotFound from "./components/PageNotFound";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Register from "./components/Register/Register";
 import SignUp from "./components/SignUp/SignUp";
@@ -28,6 +29,7 @@ function App() {
             <Route path="/add-Event" element={<AddEvent/>}/>
             <Route path="/volunteerList" element={<VolunteerList/>}/>
           </Route>
+          <Route exact path="/:pageName" element={<PageNotFound />} />
         </Routes>
       </AuthProvider>
         <ToastContainer />

@@ -63,7 +63,7 @@ const Events = () => {
   return (
     <>
     <NavBar/>
-        <div className="mt-20">
+        <div className="mt-20 sm: py-5">
     <h1 className="block mt-1 text-lg leading-tight text-indigo-500 font-bold mb-10">Your Total registered Events : {events.length}</h1>
       {events.map(event => ( 
         <div key={event._id} className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mb-5  ">

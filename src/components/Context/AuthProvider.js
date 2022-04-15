@@ -1,7 +1,11 @@
 import {
+    createUserWithEmailAndPassword,
     getAuth,
     GoogleAuthProvider,
     onAuthStateChanged,
+    sendEmailVerification,
+    sendPasswordResetEmail,
+    signInWithEmailAndPassword,
     signInWithPopup,
     signOut
 } from "firebase/auth";
@@ -25,12 +29,13 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
         if(user){
+            // console.log(user)
             const {displayName, photoURL, email} = user;
             const loggedInUser = {
-            name: displayName,
+            name: displayName || 'Empty name',
             photoUrl : photoURL,
             email: email
-        }
+        } 
         setCurrentUser(loggedInUser);
         }else{
             setCurrentUser({})
@@ -57,6 +62,46 @@ const AuthProvider = ({ children }) => {
       .finally(() => setIsLoading(false));
   };
 
+  const signUpWithEmailPassword = async(username,email,password) =>{
+    await createUserWithEmailAndPassword(auth,email,password);
+    const loggedInUser = {
+        name:username,
+        email: email
+    }
+    setCurrentUser(loggedInUser);
+    setIsLoading(false);
+  };
+
+  const emailVerification = async() =>{
+   await sendEmailVerification(auth.currentUser)
+    .then(()=>{
+        console.log('Verification  send!')
+    })
+  }
+
+  const resetPassword = async(email) =>{
+      await sendPasswordResetEmail(auth, email)
+      .then(()=>{
+        console.log('reset password send!')
+      })
+  }
+
+  const logInWithEmailPassword = async(email, password,name) =>{
+    setIsLoading(true);
+    await signInWithEmailAndPassword(auth,email,password)
+    .then((result)=>{
+        const {email} = result.user;
+        // console.log(result)
+        const loggedInUser = {
+            name: name,
+            email: email
+        }
+        setCurrentUser(loggedInUser);
+        setIsLoading(false);
+    })
+    .finally(() => setIsLoading(false));
+  }
+
   const logOut = async () => {
     setIsLoading(true);
     signOut(auth)
@@ -73,6 +118,10 @@ const AuthProvider = ({ children }) => {
   const value = {
     currentUser,
     signInwithGoogle,
+    signUpWithEmailPassword,
+    emailVerification,
+    resetPassword,
+    logInWithEmailPassword,
     isLoading,
     logOut,
   };

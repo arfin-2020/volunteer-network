@@ -67,7 +67,7 @@ const Register = () => {
            {
              events.filter(event=>event._id === id)
              .map(event=>
-              <Form onSubmit={handleSubmit(onSubmit)} className="text-center">
+              <Form key={event._id} onSubmit={handleSubmit(onSubmit)} className="text-center">
               <Form.Group className="mb-2">
                 <Form.Control
                   
