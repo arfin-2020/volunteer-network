@@ -11,7 +11,7 @@ const Card = () => {
 
   // console.log(setEvents)
   // useEffect(() => {
-  //   fetch("http://localhost:5000/events")
+  //   fetch("https://powerful-bastion-35071.herokuapp.com/events")
   //     .then(res => res.json())
   //     .then(data => {
   //       setEvents(data);

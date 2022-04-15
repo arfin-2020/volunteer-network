@@ -24,7 +24,7 @@ const Register = () => {
   } = useForm();
   const onSubmit = (data,e) => {
     //   console.log(data.name)
-        fetch('http://localhost:5000/registers',{
+        fetch('https://powerful-bastion-35071.herokuapp.com/registers',{
             method : "POST",
             headers: {
                 'Content-Type' : 'Application/json'

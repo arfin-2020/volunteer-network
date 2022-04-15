@@ -6,7 +6,7 @@ const VolunteerList = () => {
 
     // console.log(volunteerList)
     useEffect(()=>{
-        fetch('http://localhost:5000/allVoluenteer')
+        fetch('https://powerful-bastion-35071.herokuapp.com/allVoluenteer')
         .then(res=>res.json())
         .then(data=>setVoluenteerList(data))
     },[])

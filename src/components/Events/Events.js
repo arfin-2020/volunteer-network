@@ -13,7 +13,7 @@ const Events = () => {
   let eventNametoArray = new Array(eventName);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allevents/byName", {
+    fetch("https://powerful-bastion-35071.herokuapp.com/allevents/byName", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const Events = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/events/${id}`,{
+        fetch(`https://powerful-bastion-35071.herokuapp.com/events/${id}`,{
           method: "DELETE",
           
       })
