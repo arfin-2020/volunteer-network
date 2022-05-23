@@ -23,12 +23,13 @@ function App() {
           <Route path="/signUp" element={<SignUp/>}/>
           <Route path="/login" element={<Login/>}/>
 
-          <Route paht='*' element={<PrivateRoute/>}>
+          <Route path='*' element={<PrivateRoute/>}>
             <Route path="/register/:id" element={<Register/>}/>
             <Route path="/register/events" element={<Events/>}/>
             <Route path="/add-Event" element={<AddEvent/>}/>
             <Route path="/volunteerList" element={<VolunteerList/>}/>
           </Route>
+
           <Route exact path="/:pageName" element={<PageNotFound />} />
         </Routes>
       </AuthProvider>
